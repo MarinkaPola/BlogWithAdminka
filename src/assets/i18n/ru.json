@@ -1,0 +1,17 @@
+{
+"blog_title": "Блог",
+"load_posts": "Загружаю посты...",
+"header_post_index": "Номер",
+"post_index": "{index + 1}",
+"header_post_title": "Название",
+"post_title": "{{post.title}}",
+"header_post_date": "Дата",
+"post_date": "{post.date | date:'medium': null:'ru'}",
+"header_post_author": "Автор",
+"post_author": "{post.author}",
+"header_posts_open ": "Открыть пост",
+"posts_open": "Открыть",
+"Items_per_page": " Пункты на странице "
+}   
+
+

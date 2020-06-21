@@ -1,0 +1,99 @@
+<!--
+<div *ngIf="posts$ | async as posts; else loading"
+        class="posts">
+   <app-posts *ngFor="let post of posts" [post]="post">
+
+   </app-posts>
+</div>-->
+
+
+<button (click)="useLanguage('en')">en</button>
+<button (click)="useLanguage('ru')">ru</button>
+
+<div class="card">
+   <div class="card-header card-header-warning">
+      <h4 class="card-title">Список постов</h4>
+   </div>
+   <div class="card-body table-responsive">
+
+      <table [dataSource]="dataSource" mat-table matSort >
+
+         <!--  *ngFor="let post of posts | searchPosts: searchStr; let idx=index"-->
+
+         <!-- нумерация-->
+         <ng-container matColumnDef="id">
+            <th *matHeaderCellDef mat-header-cell>{{'header_post_index'| translate}}</th>
+            <td *matCellDef="let index = index" class="col-id" mat-cell>
+
+               {{'post_index'| translate}}
+
+            </td>
+         </ng-container>
+
+
+         <!-- название задачи-->
+         <ng-container matColumnDef="title">
+            <th *matHeaderCellDef mat-header-cell >{{'header_post_title'| translate}}</th>
+            <td *matCellDef="let post" class="col-title" mat-cell>
+
+               {{'post_title'| translate}}
+
+            </td>
+         </ng-container>
+
+         <!--дата выполнения-->
+         <ng-container matColumnDef="date">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>Дата</th>
+            <td *matCellDef="let post"
+                class="col-date"
+                mat-cell>
+
+               {{post.date | date:'medium': null:'ru'}}
+
+            </td>
+         </ng-container>
+
+         <!--автор -->
+         <ng-container matColumnDef="author">
+            <th *matHeaderCellDef mat-header-cell > Aвтор </th>
+            <td *matCellDef="let post" class="col-author"
+                mat-cell
+            >
+               {{post.author}}
+
+            </td>
+         </ng-container>
+
+         переписать урок - указать, что это структурные директивы - изменяют поведение стандартного тега
+         вместе с атрибутом дают эффект -
+
+         <!--открыть-->
+         <ng-container matColumnDef="category">
+            <th *matHeaderCellDef mat-header-cell > Открыть пост</th>
+            <td *matCellDef="let post" class="col-category"
+                mat-cell>
+
+               <button class="btn btn-link open" [routerLink]="['/', 'post', post.id]">Открыть</button>
+
+            </td>
+         </ng-container>
+
+
+         <!--  заголовок таблицы-->
+         <tr *matHeaderRowDef="displayedColumns; " mat-header-row></tr>
+
+         <!--  строки таблицы - набор строк из тегов td (порядок указывается в переменной displayedColumns) -->
+         <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+      </table>
+      <div *ngIf="posts.length ==0"><p class="not-found">Загрузка постов...</p></div>
+
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 50, 100]" showFirstLastButtons></mat-paginator>
+
+
+   </div>
+
+</div>
+
+

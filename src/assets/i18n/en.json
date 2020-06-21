@@ -1,0 +1,56 @@
+{
+"blog_title": "the Blog",
+"load_posts": "Loading posts ...",
+"header_post_index": "Number",
+"post_index": "{{index + 1}}",
+"header_post_title": "Тitle",
+"post_title": "{{post.title}}",
+"header_post_date": "Date",
+"post_date": "{{post.date | date:'medium': null:'ru'}}",
+"header_post_author": " Аuthor ",
+"post_author": "{{post.author}}",
+"header_posts_open": "Open the post",
+"posts_open": "Open",
+"Items_per_page": "Items per page"
+}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

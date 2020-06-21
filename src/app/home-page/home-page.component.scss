@@ -1,0 +1,25 @@
+.col-id {
+  width: 8%;
+  text-align: center;
+}
+
+.col-title {
+  width: 25%;
+}
+
+.col-author {
+  width: 20%;
+}
+
+.col-category {
+  width: 20%;
+}
+
+.col-date {
+  width: 30% !important;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
+  padding-left: 2px;
+  text-align: center;
+}
