@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {PostsService} from '../shared/post.service';
 import {Observable} from 'rxjs';
@@ -13,6 +13,10 @@ import {switchMap} from 'rxjs/operators';
 })
 export class PostPageComponent implements OnInit {
   post$: Observable<Post>;
+    id: any;
+
+
+
 
   constructor( private route: ActivatedRoute,
                private postsService: PostsService
@@ -20,7 +24,10 @@ export class PostPageComponent implements OnInit {
 
   ngOnInit() {
     this.post$ = this.route.params
-        .pipe(switchMap((params: Params) => {console.log(params.id);
-                                             return this.postsService.getById(params.id);
-        })); }
+        .pipe(switchMap((params: Params) => { this.id = params.id; console.log(this.id);
+                                              return this.postsService.getById(params.id);
+        }));
+      }
+
+
 }

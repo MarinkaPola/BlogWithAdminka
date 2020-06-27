@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChatService} from '../chat.service';
 import {Message} from '../../shared/interface';
 import {Observable, Subscription} from 'rxjs';
+
 
 
 @Component({
@@ -12,25 +13,28 @@ import {Observable, Subscription} from 'rxjs';
 })
 export class AddCommentComponent implements OnInit {
 
+  @Input() id: string;
+
   constructor(private chatService: ChatService) {
   }
-  subscription: Subscription;
 
   form: FormGroup;
-  id: string;
-
-
+  messages: Message[] = [];
+  mSub: Subscription;
+  m2Sub: Subscription;
 
   ngOnInit() {
-
-    this.subscription = this.chatService.getId().subscribe(data => {this.id = data.id; console.log(this.id);
-                                                                    } );
+    this.mSub = this.chatService.getALL(this.id).subscribe(messages => {
+      this.messages = messages;
+    });
     this.form = new FormGroup({
       textmes: new FormControl(null, Validators.required),
       namemes: new FormControl(null, Validators.required)
     });
 
   }
+
+
   submit() {
     if (this.form.invalid) {
       return;
@@ -42,8 +46,22 @@ export class AddCommentComponent implements OnInit {
     };
 
 
-
-    this.chatService.createmes(message, this.id).subscribe(() => {this.form.reset(); console.log(message); });
+    this.chatService.createmes(message, this.id).subscribe(() => {
+      this.form.reset();
+      console.log(message);
+    });
 
   }
+
+  edit(idmes: string) {
+
+  }
+
+  remove(idmes: string) {
+    this.m2Sub = this.chatService.remove(idmes).subscribe(() => {
+      this.messages = this.messages.filter(message => message.idmes !== idmes);
+    });
+  }
+
+
 }
