@@ -1,0 +1,5 @@
+<div class="edit-text" id="edit-text" [ngClass]="{invisible: vartruefalse}">
+    <p>Edit text</p>
+    <div><input class="new-text" type="text"  [(ngModel)]="textmes"></div>
+    <input class="save" type="button" value="SAVE" id="save" (click)="saveNametext(textmes, idmes, namemes, datemes, id)">
+</div>

@@ -1,0 +1,33 @@
+.edit-text{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f1f1f1;
+  width: 100%;
+  padding: 0.8em;
+  text-align: center;
+  display: block;
+}
+.edit-text p{margin-bottom: 0.2em; text-align: center;}
+
+.new-text{
+  background-color: rgba(255, 255, 237, 0.84);
+  width: 80%;
+  height: 6em;
+  line-height: 6em;
+  padding-left: 0.5em;
+  margin: 0.8em;
+}
+.save{background: #4ebdcb;
+  border-color: #4ebdcb;
+  border-style: solid;
+  width: 9.5rem;
+  height: 2.5rem;
+  margin-left: 4%;
+}
+.cancel{background: #f1f1f1;
+  border-color: grey;
+  border-style: solid;
+  border-width: 0.5px;
+  width: 9.5rem;
+  height: 2.5rem;
+}
