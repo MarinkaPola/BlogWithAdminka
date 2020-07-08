@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChatService} from '../chat.service';
 import {Message} from '../../shared/interface';
-import {Observable, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 
 
 
@@ -22,6 +22,8 @@ export class AddCommentComponent implements OnInit {
   messages: Message[] = [];
   mSub: Subscription;
   m2Sub: Subscription;
+  private subjU: BehaviorSubject<any> = new BehaviorSubject([]);
+  ESub: Subscription
 
   ngOnInit() {
     this.mSub = this.chatService.getALL(this.id).subscribe(messages => {
@@ -48,20 +50,20 @@ export class AddCommentComponent implements OnInit {
 
     this.chatService.createmes(message, this.id).subscribe(() => {
       this.form.reset();
+      this.messages.push(message);
+      this.subjU.next(this.messages);
       console.log(message);
     });
-
   }
 
-  edit(idmes: string) {
-
+    openModalWithComponent(idmes: string, textmes: string, nememes: string, datemes: Date, id: string ) {
+    this.chatService.edit(idmes, textmes, nememes, datemes, id);
   }
 
   remove(idmes: string) {
-    this.m2Sub = this.chatService.remove(idmes).subscribe(() => {
+    this.m2Sub = this.chatService.remove(this.id, idmes).subscribe(() => {
       this.messages = this.messages.filter(message => message.idmes !== idmes);
     });
   }
-
 
 }

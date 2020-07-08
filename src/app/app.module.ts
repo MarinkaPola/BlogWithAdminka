@@ -17,7 +17,9 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClientModule} from '@angular/common/http';
 import {AddCommentComponent} from './comments/add-comment/add-comment.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ModalForAddCommentComponent} from './modal-for-add-comment/modal-for-add-comment.component';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 
 registerLocaleData(ruLocale, 'ru');
@@ -36,7 +38,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HomePageComponent,
     PostPageComponent,
     PostsComponent,
-      AddCommentComponent
+      AddCommentComponent,
+      ModalForAddCommentComponent,
   ],
   providers: [INTERCEPTOR_PROVIDER],
     imports: [
@@ -48,6 +51,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
         MatPaginatorModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        ModalModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -61,7 +65,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
             //  useClass: TranslateMessageFormatCompiler
             // }
         }),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormsModule
     ],
   bootstrap: [AppComponent]
 })

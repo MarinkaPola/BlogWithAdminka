@@ -30,3 +30,9 @@ export interface  Message {
 export interface FbCreateResponsemes {
     name: string;
 }
+export interface FbsaveNametextResponsemes {
+    name: string;
+    datemes: Date;
+    textmes: string;
+    namemes: string;
+}

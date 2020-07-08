@@ -1,14 +1,23 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {FbCreateResponsemes, Message} from '../shared/interface';
-import {Observable} from 'rxjs';
+import {FbCreateResponsemes, FbsaveNametextResponsemes, Message, Post} from '../shared/interface';
+import {Observable, Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 
 
+export interface  Message {
+    idmes?: string;
+    textmes: string;
+    namemes: string;
+    datemes: Date;
+}
 @Injectable({providedIn: 'root'})
-export class ChatService {
-    constructor(private http: HttpClient) {}
+        export class ChatService {
+    public subjm = new Subject<any>();
+
+    constructor(private http: HttpClient) {
+    }
 
     createmes(message: Message, id: string): Observable<Message> {
 
@@ -26,19 +35,40 @@ export class ChatService {
 
     getALL(id: string): Observable<Message[]> {
         return this.http.get(`${environment.fbDbUrl}/posts/${id}/messages.json`)
-            .pipe(map((responsemes: {[key: string]: any}) => {
+            .pipe(map((responsemes: { [key: string]: any }) => {
                 return Object
                     .keys(responsemes)
                     .map(key => ({
                         ...responsemes[key],
                         idmes: key,
-                        datemes: new Date(responsemes[key].date)
+                        datemes: new Date(responsemes[key].datemes)
                     }));
             }));
     }
 
-    remove(idmes: string): Observable<void> {
-            return   this.http.delete<void>(`${environment.fbDbUrl}/messages/${idmes}.json`);
+    remove(id: string, idmes: string): Observable<Message> {
+        return this.http.delete<Message>(`${environment.fbDbUrl}/posts/${id}/messages/${idmes}.json`);
+    }
+
+    edit(idmes: string, textmes: string, namemes: string, datemes: Date, id: string) {
+        this.subjm.next({event: 'openModalWithComponent', idmes, textmes, namemes, datemes, id});
+        console.log(textmes, namemes);
+    }
+
+    getMessageEdit(): Observable<any> {
+        return this.subjm.asObservable();
+    }
+
+    saveNametext(message: { idmes: string; textmes: string, datemes: Date, namemes: string}, id: string): Observable<Message> {
+        return  this.http.patch<Message>(`${environment.fbDbUrl}/posts/${id}/messages/${message.idmes}.json`, message)
+            .pipe(map((responsemes: FbsaveNametextResponsemes) => {
+                return {
+                    ...message,
+                    idmes: responsemes.name,
+                    datemes: new Date(message.datemes),
+                   textmes: message.textmes,
+                    namemes: message.namemes,
+                };
+            }));
     }
 }
-

@@ -8,7 +8,7 @@
         <td>{{message.textmes}} </td>
         <td>{{message.datemes | date:'medium': null:'ru'}}</td>
         <td>
-            <button><a (click)="edit(message.idmes)">Редактировать</a></button>
+            <button><a (click)="openModalWithComponent(message.idmes, message.textmes, message.namemes, message.datemes, this.id)">Редактировать</a></button>
             <button><a (click)="remove(message.idmes)">Удалить</a></button>
         </td>
     </tr>
@@ -21,16 +21,15 @@
     <div class="form-control"
          [ngClass]="{invalid: form.get('namemes').touched && form.get('namemes').invalid}"
     >
-        <label for="namemes">Имя коментатора:</label>
+        <label for="namemes" class="label-name">Имя коментатора:</label>
         <input id="namemes" type="text" formControlName="namemes">
         <div *ngIf="form.get('namemes').touched && form.get('namemes').invalid"
              class="validation">
             <small *ngIf="form.get('namemes').errors.required">Введите автора комента</small>
         </div>
     </div>
-
     <div class="form-control"
-         [ngClass]="{invalid: form.get('textmes').touched && form.get('textmes').invalid}"
+    [ngClass]="{invalid: form.get('textmes').touched && form.get('textmes').invalid}"
     >
         <label for="textmes">Текст комента:</label>
         <input id="textmes" type="text" formControlName="textmes">
