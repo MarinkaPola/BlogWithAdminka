@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChatService} from '../chat.service';
 import {Message} from '../../shared/interface';
@@ -23,7 +23,7 @@ export class AddCommentComponent implements OnInit {
   mSub: Subscription;
   m2Sub: Subscription;
   private subjU: BehaviorSubject<any> = new BehaviorSubject([]);
-  ESub: Subscription
+  ESub: Subscription;
 
   ngOnInit() {
     this.mSub = this.chatService.getALL(this.id).subscribe(messages => {
@@ -35,7 +35,6 @@ export class AddCommentComponent implements OnInit {
     });
 
   }
-
 
   submit() {
     if (this.form.invalid) {
@@ -56,7 +55,7 @@ export class AddCommentComponent implements OnInit {
     });
   }
 
-    openModalWithComponent(idmes: string, textmes: string, nememes: string, datemes: Date, id: string ) {
+  openModalWithComponent(idmes: string, textmes: string, nememes: string, datemes: Date, id: string) {
     this.chatService.edit(idmes, textmes, nememes, datemes, id);
   }
 
@@ -66,4 +65,13 @@ export class AddCommentComponent implements OnInit {
     });
   }
 
+  UpdateMessage() {
+   this.ESub = this.chatService.getsaveNametext().subscribe(data => { return console.log(7);
+                                                                      if (data.event === 'getsaveNametext') {
+       this.chatService.getALL(this.id).subscribe(messages => {
+         this.messages = messages;
+       });
+     }
+   });
+ }
 }

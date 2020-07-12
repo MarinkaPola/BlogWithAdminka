@@ -15,7 +15,7 @@ export interface  Message {
 @Injectable({providedIn: 'root'})
         export class ChatService {
     public subjm = new Subject<any>();
-
+    public subjmup = new Subject<any>();
     constructor(private http: HttpClient) {
     }
 
@@ -50,14 +50,22 @@ export interface  Message {
         return this.http.delete<Message>(`${environment.fbDbUrl}/posts/${id}/messages/${idmes}.json`);
     }
 
+    getMessageEdit(): Observable<any> {
+        return this.subjm.asObservable();
+    }
+
     edit(idmes: string, textmes: string, namemes: string, datemes: Date, id: string) {
         this.subjm.next({event: 'openModalWithComponent', idmes, textmes, namemes, datemes, id});
         console.log(textmes, namemes);
     }
 
-    getMessageEdit(): Observable<any> {
-        return this.subjm.asObservable();
+    getsaveNametext(): Observable<any> {
+        return this.subjm.asObservable(); console.log(7);
     }
+    Update() {
+        this.subjmup.next({event: 'getsaveNametext'}); console.log(7);
+    }
+
 
     saveNametext(message: { idmes: string; textmes: string, datemes: Date, namemes: string}, id: string): Observable<Message> {
         return  this.http.patch<Message>(`${environment.fbDbUrl}/posts/${id}/messages/${message.idmes}.json`, message)

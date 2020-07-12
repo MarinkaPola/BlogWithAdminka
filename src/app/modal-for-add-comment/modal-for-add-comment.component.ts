@@ -47,17 +47,24 @@ export class ModalForAddCommentComponent implements OnInit {
   }
 
   saveNametext(textmes: string, namemes: string, idmes: string, datemes: Date, id: string) {
-    if (this.text !== undefined) {
-      this.chatServise.saveNametext({idmes: this.idmes, textmes: this.textmes, datemes: this.datemes, namemes: this.namemes}, this.id)
+    if (this.textmes) {
+      this.chatServise.saveNametext({
+        idmes: this.idmes,
+        textmes: this.textmes,
+        datemes: this.datemes,
+        namemes: this.namemes
+      }, this.id)
           .subscribe(() => {
-            //
-            this.message.textmes = this.textmes;
-            this.message.idmes = this.idmes;
-            this.message.datemes = this.datemes;
-            this.message.namemes = this.namemes;
+            this.message = {
+              textmes: this.textmes,
+              idmes: this.idmes,
+              datemes: this.datemes,
+              namemes: this.namemes,
+          };
             });
           }
-    this.text = '';
+    this.textmes = '';
+    this.chatServise.Update(); console.log(7);
     this.showModal();
     }
   }
