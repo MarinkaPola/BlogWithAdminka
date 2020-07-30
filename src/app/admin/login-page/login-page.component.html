@@ -6,7 +6,7 @@
          [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
     >
         <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email">
+        <input id="email" type="email" formControlName="email" class="email">
         <div *ngIf="form.get('email').touched && form.get('email').invalid"
         class="validation">
         <small *ngIf="form.get('email').errors.required">Введите Email</small>
@@ -29,6 +29,6 @@
         </small>
     </div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">Войти</button>
+    <button type="submit" class="btn btn-primary btn-lg" [disabled]="form.invalid || submitted">Войти</button>
 
 </form>

@@ -1,4 +1,35 @@
 form{
+  margin-top: 5%;
   max-width: 600px;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
 }
+
+.btn{
+  margin-top: 10px;
+  font-size: 2rem;
+  margin-left: 2%;
+}
+.form-control{
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background-color: #d8ecff;
+  height: 100%;
+}
+.card{
+  background-color: #d8ecff;
+  border-radius: 12px;
+}
+
+input{
+  border: 1px solid #6a9fcc;
+  border-radius: 6px;
+  background-color: #fffdf5;
+}
+
+.email {
+  background-color: #fffdf5;
+}
+
+

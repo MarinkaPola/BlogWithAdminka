@@ -1,44 +1,47 @@
-<div><h3>Massiv komentov</h3>
+<div><h3>{{'followers_comments'| translate}}</h3>
     <tr
-            *ngFor="let message of messages; let inx=idmes"
+            *ngFor="let message of messages"
             class="message"
     >
         <td>{{message.idmes}} </td>
-        <td> {{message.namemes}} </td>
-        <td>{{message.textmes}} </td>
-        <td>{{message.datemes | date:'medium': null:'ru'}}</td>
+        <div class="container-general">
+            <div class="nameU"> {{message.namemes}} </div>
+            <div class="mes_data">
+                <div>{{message.textmes}} </div>
+                <div class="data">{{message.datemes | date:'medium': null:'ru'}}</div>
+            </div>
+        </div>
         <td>
-            <button><a (click)="openModalWithComponent(message.idmes, message.textmes, message.namemes, message.datemes, this.id)">Редактировать</a></button>
-            <button><a (click)="remove(message.idmes)">Удалить</a></button>
+            <button class="btn-mes"><a (click)="openModalWithComponent(message.idmes, message.textmes, message.namemes, message.datemes, this.id)">{{'edit'| translate}}</a></button>
+            <button class="btn-mes"><a (click)="remove(message.idmes)">{{'delete'| translate}}</a></button>
         </td>
     </tr>
 
 </div>
-<div class="comment">
-    <h2>Here you can leave a comment</h2>
+<div class="comment" [ngClass]="{invisible: vartruef}">
 <form [formGroup]="form" (ngSubmit)="submit()">
 
     <div class="form-control"
          [ngClass]="{invalid: form.get('namemes').touched && form.get('namemes').invalid}"
     >
-        <label for="namemes" class="label-name">Имя коментатора:</label>
+        <label for="namemes" class="label-name">{{'сommentator_name'| translate}}</label>
         <input id="namemes" type="text" formControlName="namemes">
         <div *ngIf="form.get('namemes').touched && form.get('namemes').invalid"
              class="validation">
-            <small *ngIf="form.get('namemes').errors.required">Введите автора комента</small>
+            <small *ngIf="form.get('namemes').errors.required">{{'enter_the_author'| translate}}</small>
         </div>
     </div>
     <div class="form-control"
     [ngClass]="{invalid: form.get('textmes').touched && form.get('textmes').invalid}"
     >
-        <label for="textmes">Текст комента:</label>
+        <label for="textmes">{{'message_text'| translate}}</label>
         <input id="textmes" type="text" formControlName="textmes">
         <div *ngIf="form.get('textmes').touched && form.get('textmes').invalid"
              class="validation">
-            <small *ngIf="form.get('textmes').errors.required">Введите название поста</small>
+            <small *ngIf="form.get('textmes').errors.required">{{'enter_mes_text'| translate}}</small>
         </div>
     </div>
 <!--<p>{{id}}</p>-->
-    <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid" >Создать комент</button>
+    <button type="submit" class="btn btn-block btn-dark" [disabled]="form.invalid" >{{'leave_a_comment'| translate}}</button>
 </form>
 </div>

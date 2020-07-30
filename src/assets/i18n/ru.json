@@ -9,9 +9,23 @@
 "post_date": "{post.date | date:'medium': null:'ru'}",
 "header_post_author": "Автор",
 "post_author": "{post.author}",
-"header_posts_open ": "Открыть пост",
+"header_posts_open": "Открыть подробности",
 "posts_open": "Открыть",
-"Items_per_page": " Пункты на странице "
+"Items_per_page": " Пункты на странице ",
+  "header_the_blog": "Блог",
+  "header_list_of_posts": "список постов",
+  "open": "Открыть",
+  "go_to_home_page": "на главную",
+  "followers_comments": "Комментарии интересующихся",
+  "leave_a_comment": "Оставить комментарий",
+  "сommentator_name": "Имя коментатора",
+  "message_text": "Текст сообщения",
+  "edit": "редактировать",
+  "delete": "удалить",
+  "edit text": "Редактировать текст",
+  "SAVE": "СОХРАНИТЬ",
+  "enter_the_author": "Введите автора комментария",
+  "enter_mes_text": "Введите текст сообщения"
 }   
 
 

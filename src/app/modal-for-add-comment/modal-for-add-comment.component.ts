@@ -23,7 +23,6 @@ export class ModalForAddCommentComponent implements OnInit {
 
   constructor(private chatServise: ChatService) {
   }
-  messages: Message[] = [];
   ngOnInit() {
     this.subscription = this.chatServise.getMessageEdit().subscribe(data => {
       if (data.event === 'openModalWithComponent') {
@@ -46,7 +45,7 @@ export class ModalForAddCommentComponent implements OnInit {
     this.vartruefalse = !this.vartruefalse;
   }
 
-  saveNametext(textmes: string, namemes: string, idmes: string, datemes: Date, id: string) {
+  saveNametext() {
     if (this.textmes) {
       this.chatServise.saveNametext({
         idmes: this.idmes,
@@ -63,8 +62,8 @@ export class ModalForAddCommentComponent implements OnInit {
           };
             });
           }
+    this.chatServise.Update();
     this.textmes = '';
-    this.chatServise.Update(); console.log(7);
     this.showModal();
     }
   }

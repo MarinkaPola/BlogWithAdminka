@@ -1,6 +1,11 @@
 <nav class="navbar main">
-    <h1>Блог</h1>
+    <h1>{{'header_the_blog'| translate}}</h1>
+    <div >
+        <button class="button-lang" (click)="useLanguage('en')">en</button>
+        <button class="button-lang" (click)="useLanguage('ru')">ru</button>
+    </div>
 </nav>
+
 <div class="container">
     <router-outlet></router-outlet>
 </div>

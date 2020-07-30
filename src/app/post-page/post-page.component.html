@@ -2,7 +2,7 @@
     <div class="post">
         <div class="header">
             <h1>{{post.title}}</h1>
-            <button routerLink="/" class="btn btn-link">На главную</button>
+            <button routerLink="/" class="btn btn-link">{{'go_to_home_page'| translate}}</button>
         </div>
         <div class="info">
             <strong>{{post.author}}</strong>
@@ -13,6 +13,6 @@
         </div>
     </div>
 </div>
-<ng-template #loading><p>Загружаю пост...</p></ng-template>
+<ng-template #loading><p>loading post......</p></ng-template>
 <app-add-comment [id]="id"></app-add-comment>
 <app-modal-for-add-comment></app-modal-for-add-comment>

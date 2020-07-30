@@ -7,11 +7,25 @@
 "post_title": "{{post.title}}",
 "header_post_date": "Date",
 "post_date": "{{post.date | date:'medium': null:'ru'}}",
-"header_post_author": " Аuthor ",
+"header_post_author": "Аuthor",
 "post_author": "{{post.author}}",
-"header_posts_open": "Open the post",
+"header_posts_open": "Open details",
 "posts_open": "Open",
-"Items_per_page": "Items per page"
+"Items_per_page": "Items per page",
+ "header_the_blog": "The blog",
+  "header_list_of_posts": "list of posts",
+  "open": "open",
+  "go_to_home_page": "to home page",
+  "followers_comments": "Followers comments",
+  "leave_a_comment": "Leave a comment",
+  "сommentator_name": "Commentator name",
+  "message_text": "Message text",
+  "edit": "edit",
+  "delete": "delete",
+  "edit text": "Edit text",
+  "SAVE": "SAVE",
+  "enter_the_author": "Enter the author of the comment",
+  "enter_mes_text": "Enter your message"
 }   
 
 

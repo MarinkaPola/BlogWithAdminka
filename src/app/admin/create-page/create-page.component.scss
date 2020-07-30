@@ -1,4 +1,13 @@
 form{
+  margin-top: 5%;
   max-width: 600px;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.form-control{
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  height: 100%;
 }

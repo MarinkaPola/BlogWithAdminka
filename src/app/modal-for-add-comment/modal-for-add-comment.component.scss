@@ -1,28 +1,42 @@
 .edit-text{
+  margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f1f1f1;
+  background-color: rgba(179, 220, 235, 0.62);
   width: 100%;
   padding: 0.8em;
   text-align: center;
   display: block;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #6b8fac;
 }
-.edit-text p{margin-bottom: 0.2em; text-align: center;}
+.edit-text p{
+  margin-bottom: 0.2em;
+  text-align: center;
+
+}
 
 .new-text{
-  background-color: rgba(255, 255, 237, 0.84);
-  width: 80%;
+  background-color: #fff;
+  width: 95%;
   height: 6em;
-  line-height: 6em;
-  padding-left: 0.5em;
-  margin: 0.8em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
 }
-.save{background: #4ebdcb;
+.save{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: #4ebdcb;
   border-color: #4ebdcb;
   border-style: solid;
   width: 9.5rem;
   height: 2.5rem;
-  margin-left: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
 }
 .cancel{background: #f1f1f1;
   border-color: grey;

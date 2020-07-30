@@ -24,6 +24,8 @@ export class AddCommentComponent implements OnInit {
   m2Sub: Subscription;
   private subjU: BehaviorSubject<any> = new BehaviorSubject([]);
   ESub: Subscription;
+  vartruef = false;
+
 
   ngOnInit() {
     this.mSub = this.chatService.getALL(this.id).subscribe(messages => {
@@ -33,13 +35,22 @@ export class AddCommentComponent implements OnInit {
       textmes: new FormControl(null, Validators.required),
       namemes: new FormControl(null, Validators.required)
     });
+    this.ESub = this.chatService.getsaveNametext().subscribe(data => {
+                                                                       if (data.event === 'saveNametext') {
+                                                                        this.chatService.getALL(this.id)
+                                                                           .subscribe(messages => {this.messages = messages;
+                                                                                                   this.vartruef = false;
+                                                                           });
 
+      }
+    });
   }
 
   submit() {
     if (this.form.invalid) {
       return;
     }
+    this.vartruef = true;
     const message: Message = {
       namemes: this.form.value.namemes,
       textmes: this.form.value.textmes,
@@ -56,7 +67,10 @@ export class AddCommentComponent implements OnInit {
   }
 
   openModalWithComponent(idmes: string, textmes: string, nememes: string, datemes: Date, id: string) {
+
     this.chatService.edit(idmes, textmes, nememes, datemes, id);
+    this.ngOnInit(); console.log(7);
+    this.vartruef = true;
   }
 
   remove(idmes: string) {
@@ -64,14 +78,4 @@ export class AddCommentComponent implements OnInit {
       this.messages = this.messages.filter(message => message.idmes !== idmes);
     });
   }
-
-  UpdateMessage() {
-   this.ESub = this.chatService.getsaveNametext().subscribe(data => { return console.log(7);
-                                                                      if (data.event === 'getsaveNametext') {
-       this.chatService.getALL(this.id).subscribe(messages => {
-         this.messages = messages;
-       });
-     }
-   });
- }
 }

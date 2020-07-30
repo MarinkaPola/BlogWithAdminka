@@ -1,6 +1,41 @@
-.posts {
-  max-width: 600px;
-  margin: 0 auto;
+.col-id {
+  width: 8%;
+  text-align: center;
+}
+
+.col-title {
+  width: 25%;
+}
+
+.col-author {
+  width: 20%;
+}
+
+.col-category {
+  width: 20%;
+}
+
+.col-date {
+  width: 30% !important;
+}
+
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
+  padding-left: 2px;
+  text-align: center;
+}
+
+th {
+  background: #d2e3f5;
+}
+
+.card {
+  border-style: none;
+}
+
+.mat-table {
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: #d9d9f5;
 }
 
 /*# sourceMappingURL=home-page.component.css.map */

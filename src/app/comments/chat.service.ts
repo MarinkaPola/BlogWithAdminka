@@ -16,6 +16,7 @@ export interface  Message {
         export class ChatService {
     public subjm = new Subject<any>();
     public subjmup = new Subject<any>();
+    public vartruef: boolean;
     constructor(private http: HttpClient) {
     }
 
@@ -60,10 +61,10 @@ export interface  Message {
     }
 
     getsaveNametext(): Observable<any> {
-        return this.subjm.asObservable(); console.log(7);
+        return this.subjmup.asObservable();
     }
     Update() {
-        this.subjmup.next({event: 'getsaveNametext'}); console.log(7);
+        this.subjmup.next({event: 'saveNametext'});
     }
 
 
@@ -79,4 +80,5 @@ export interface  Message {
                 };
             }));
     }
+
 }

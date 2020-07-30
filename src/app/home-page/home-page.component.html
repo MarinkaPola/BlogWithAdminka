@@ -1,18 +1,10 @@
-<!--
-<div *ngIf="posts$ | async as posts; else loading"
-        class="posts">
-   <app-posts *ngFor="let post of posts" [post]="post">
 
-   </app-posts>
-</div>-->
-
-
-<button (click)="useLanguage('en')">en</button>
-<button (click)="useLanguage('ru')">ru</button>
+<!--<button (click)="useLanguage('en')">en</button>
+<button (click)="useLanguage('ru')">ru</button>-->
 
 <div class="card">
    <div class="card-header card-header-warning">
-      <h4 class="card-title">Список постов</h4>
+      <h4 class="card-title">{{'header_list_of_posts'| translate}}</h4>
    </div>
    <div class="card-body table-responsive">
 
@@ -25,7 +17,7 @@
             <th *matHeaderCellDef mat-header-cell>{{'header_post_index'| translate}}</th>
             <td *matCellDef="let index = index" class="col-id" mat-cell>
 
-               {{'post_index'| translate}}
+               {{index+1}}
 
             </td>
          </ng-container>
@@ -36,14 +28,14 @@
             <th *matHeaderCellDef mat-header-cell >{{'header_post_title'| translate}}</th>
             <td *matCellDef="let post" class="col-title" mat-cell>
 
-               {{'post_title'| translate}}
+               {{post.title}}
 
             </td>
          </ng-container>
 
          <!--дата выполнения-->
          <ng-container matColumnDef="date">
-            <th *matHeaderCellDef mat-header-cell mat-sort-header>Дата</th>
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>{{'header_post_date'| translate}}</th>
             <td *matCellDef="let post"
                 class="col-date"
                 mat-cell>
@@ -55,7 +47,7 @@
 
          <!--автор -->
          <ng-container matColumnDef="author">
-            <th *matHeaderCellDef mat-header-cell > Aвтор </th>
+            <th *matHeaderCellDef mat-header-cell >{{'header_post_author'| translate}}</th>
             <td *matCellDef="let post" class="col-author"
                 mat-cell
             >
@@ -69,11 +61,11 @@
 
          <!--открыть-->
          <ng-container matColumnDef="category">
-            <th *matHeaderCellDef mat-header-cell > Открыть пост</th>
+            <th *matHeaderCellDef mat-header-cell >{{'header_posts_open'| translate}}</th>
             <td *matCellDef="let post" class="col-category"
                 mat-cell>
 
-               <button class="btn btn-link open" [routerLink]="['/', 'post', post.id]">Открыть</button>
+               <button class="btn btn-link open" [routerLink]="['/', 'post', post.id]">{{'open'| translate}}</button>
 
             </td>
          </ng-container>
@@ -86,7 +78,7 @@
          <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
       </table>
-      <div *ngIf="posts.length ==0"><p class="not-found">Загрузка постов...</p></div>
+      <div *ngIf="posts.length ==0"><p class="not-found">loading posts...</p></div>
 
 
       <mat-paginator [pageSizeOptions]="[5, 10, 50, 100]" showFirstLastButtons></mat-paginator>
