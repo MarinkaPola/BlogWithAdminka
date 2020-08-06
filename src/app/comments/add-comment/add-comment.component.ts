@@ -50,7 +50,7 @@ export class AddCommentComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.vartruef = true;
+    this.vartruef = false;
     const message: Message = {
       namemes: this.form.value.namemes,
       textmes: this.form.value.textmes,
